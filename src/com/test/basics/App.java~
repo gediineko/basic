@@ -1,0 +1,66 @@
+package con.test.basic;
+
+import java.util.Scanner;
+import java.util.Random;
+
+public class App {
+  private Scanner scanner;
+  private Random rand;
+  App (){
+    scanner = new Scanner(System.in);
+    rand = new Random();
+    
+  }
+  public static void main(String[] args){
+    new App().run();
+  }
+  public void run(){
+    setTable();
+    menu();
+
+  }
+  public void menu(){
+    boolean cont = false;
+    do {
+      System.out.println("MENU: 1) Search 2) Edit 3) Print 4) Reset 5) Exit")
+      int opt = scanner.nextInt();
+      switch (opt) {
+        case 1:
+          searchTable();
+          break;
+        case 2:
+          editTable();
+          break;
+        case 3:
+          printTable();
+          break;
+        case 4:
+          setTable();
+          break;
+        case 5:
+          
+          break;
+        default:
+          cont = true;
+          break;
+      }
+    } while ()
+  }
+  public void searchTable(){
+
+  }
+  public void editTable(){
+
+  }
+  public void printTable(){
+
+  }
+  public void setTable(){
+    System.out.println("Specify table dimension.");
+    System.out.println("Rows: ");
+    int tbl_x = scanner.nextInt();
+    System.out.println("Column: ");
+    int tbl_y = scanner.nextint();
+  }
+
+}

@@ -1,0 +1,14 @@
+Activity #1
+07-04-16
+
+Objective: Apply basic java knowledge
+Description: Create a java program that generates a 2-Dimensional Array (Table form) of random ASCII characters:
+Functionalities:
+/ on startup, request for user input for table dimension
+/ generate 3 random characters per cell on the table with the specified dimension
+/ initial display shows the following menu: search, edit, print, reset, exit
+search: -user inputs search character/characters, identify number of occurrence in the table, and identify index of search string - max of 3
+edit: specify index to update
+/ print: print table
+/ reset: specify new dimensions, new random chars
+/ exit: exit the program
