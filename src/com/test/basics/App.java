@@ -3,6 +3,7 @@ import com.test.basics.util.RandomUtil;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 public class App {
   private Scanner scanner;
   private String[][] table;
@@ -20,7 +21,7 @@ public class App {
 
   }
   public void menu(){
-    boolean cont = false;
+    boolean cont = true;
     do {
       System.out.println("MENU: 1) Search 2) Edit 3) Print 4) Reset 5) Exit");
       int opt = scanner.nextInt();
@@ -40,13 +41,13 @@ public class App {
           initTable();
           break;
         case 5:
-          cont = true;
+          cont = false;
           break;
         default:
           System.out.println("Invalid option!");
           break;
       }
-    } while (!cont);
+    } while (cont);
   }
   public void searchTable(){
     System.out.println("Enter keyword: ");
@@ -55,10 +56,10 @@ public class App {
     boolean found = false;
     for (int x = 0; x < table.length; x++){
     	for (int y = 0; y < table[x].length; y++){
-        	if (table[x][y].contains(keyword)/*keyword.equals(table[x][y])*/){
+        	if (table[x][y].contains(keyword)){
       			Integer[] index = new Integer[2];
-      			index[0] = x;
-      			index[1] = y;
+      			index[0] = y;
+      			index[1] = x;
       			found = true;
       			indeces.add(index);
         }
@@ -99,23 +100,26 @@ public class App {
     table = new String[xDim][yDim];
   }
   public void editTable(){
+      int fInd;
+      int sInd;
       System.out.println("First index: ");
-      int fInd = getValidInd(table.length);
+      fInd = getValidInd(table.length);
+      scanner.nextLine();
       System.out.println("Second index: ");
-      int sInd = getValidInd(table[fInd].length);
-        System.out.println("Current value: " + table[fInd][sInd]);
-        System.out.println("Enter new value: ");
-        scanner.nextLine();
+      sInd = getValidInd(table[fInd].length);
+      scanner.nextLine();
+      System.out.println("Current value: " + table[fInd][sInd]);
+      System.out.println("Enter new value: ");
       table[fInd][sInd] = scanner.nextLine();
   }
   public int getValidInd(int validInd){
-      int validatedInd;
-      do {
-           validatedInd = scanner.nextInt(); 
-           if (validatedInd >= validInd){
-                System.out.println("Invalid index!");
-           }
-      } while (validatedInd >= validInd);
-      return validatedInd;
+    int validatedInd;
+    do {
+      validatedInd = scanner.nextInt();
+      if (validatedInd >= validInd){
+        System.out.println("Invalid index!");
+      }
+    } while (validatedInd >= validInd);
+    return validatedInd;
   }
 }
