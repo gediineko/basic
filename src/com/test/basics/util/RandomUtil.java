@@ -1,4 +1,4 @@
-package com.test.basic.util;
+package com.test.basics.util;
 import java.util.Random;
 public class RandomUtil{
   private static final int MIN = 33;

@@ -1,5 +1,5 @@
-package com.test.basic;
-import com.test.basic.util.RandomUtil;
+package com.test.basics;
+import com.test.basics.util.RandomUtil;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -8,7 +8,6 @@ public class App {
   private String[][] table;
   public App (){
     scanner = new Scanner(System.in);
-  
   }
   public static void main(String[] args){
     new App().run();
@@ -56,18 +55,18 @@ public class App {
     boolean found = false;
     for (int x = 0; x < table.length; x++){
     	for (int y = 0; y < table[x].length; y++){
-    		if (keyword.equals(table[x][y])){
-    			Integer[] index = new Integer[2];
-    			index[0] = x;
-    			index[1] = y;
-    			found = true;
-    			indeces.add(index);
-    		}
+        	if (table[x][y].contains(keyword)/*keyword.equals(table[x][y])*/){
+      			Integer[] index = new Integer[2];
+      			index[0] = x;
+      			index[1] = y;
+      			found = true;
+      			indeces.add(index);
+        }
     	}
     }
     if (found){
       System.out.println("Number of occurences: " + indeces.size());
-      System.out.println("Indeces: ");
+      System.out.print("Indeces: ");
       for (Integer[] index : indeces){
         System.out.print("[" + index[0] + "," + index[1] + "]\t");
       }
