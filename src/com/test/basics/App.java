@@ -3,7 +3,6 @@ import com.test.basics.util.RandomUtil;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.InputMismatchException;
 public class App {
   private Scanner scanner;
   private String[][] table;
@@ -93,7 +92,7 @@ public class App {
   }
   public void setTable(){
     System.out.println("Specify table dimension.");
-    System.out.println("Rows: ");
+    System.out.println("Row: ");
     int xDim = scanner.nextInt();
     System.out.println("Column: ");
     int yDim = scanner.nextInt();

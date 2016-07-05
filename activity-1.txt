@@ -13,57 +13,19 @@ Functionalities:
 / reset: specify new dimensions, new random chars
 / exit: exit the program
 
-boolean isNumeric(String input){
-  boolean result = true
-  for(char x : input.toCharArray()){
-     if(!Character.isDigit(x)){
-        result = false;
-     }
-  }
-  return result
-}
 
-int result = 0;
-    boolean valid = false;
-    do{
-      try {
-        result = scanner.nextInt();
-        scanner.nextLine();
-        if (result >= validInd || result < 0){
-          throw new InvalidArgumentException();
-        } 
-        valid = true;
-      } catch (Exception ex) {
-        System.out.println("Invalid index!");
-      }
-    } while (valid) ;
-    return result;
 
-    // int validatedInd = 0;
-    // boolean isInt = false;
-    // do{
-    //   try {
-    //     validatedInd = scanner.nextInt();
-    //     if (validatedInd >= validInd){
-    //       System.out.println("Invalid index!");
-    //       scanner.nextLine();
-    //     }
-    //   } catch (InputMismatchException ex) {
-    //     System.out.println("Invalid index!");
-    //     isInt = true;
-    //   }
-    // } while (validatedInd >= validInd && !isInt) ;
-    // return validatedInd;
 
-      // String validatedInd;
-      // do {
-      //   validatedInd = scanner.nextLine();
-      //   if (isNumeric(validatedInd)){
-      //     if (Integer.parseInt(validatedInd) >= validInd){
-      //       System.out.println("Invalid index!");
-      //     }
-      //   } else {
-      //     System.out.println("Invalid index!");
-      //   }
-      // } while (Integer.parseInt(validatedInd) >= validInd || !isNumeric(validatedInd));
-      // return Integer.parseInt(validatedInd);
+
+
+
+
+
+
+
+
+
+
+
+
+
