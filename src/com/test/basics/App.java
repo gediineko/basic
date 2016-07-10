@@ -14,7 +14,6 @@ public class App {
   }
   public void run(){
     setTable();
-    initTable();
     printTable();
     menu();
 
@@ -37,7 +36,6 @@ public class App {
           break;
         case 4:
           setTable();
-          initTable();
           break;
         case 5:
           cont = false;
@@ -91,12 +89,31 @@ public class App {
     }
   }
   public void setTable(){
+    int xDim = 0;
+    int yDim = 0;
+    boolean validRow;
+    boolean validColumn;
     System.out.println("Specify table dimension.");
-    System.out.println("Row: ");
-    int xDim = scanner.nextInt();
-    System.out.println("Column: ");
-    int yDim = scanner.nextInt();
+    do {
+      validRow = true;
+      System.out.println("Row: ");
+      xDim = scanner.nextInt();
+      if (xDim < 1){
+        validRow = false;
+        System.out.println("Row value should be atleast 1!");
+      }
+    } while (!validRow);
+    do {
+      validColumn = true;
+      System.out.println("Column: ");
+      yDim = scanner.nextInt();
+      if (yDim < 1){
+        validColumn = false;
+        System.out.println("Column value should be atleast 1!");
+      }
+    } while (!validColumn);
     table = new String[xDim][yDim];
+    initTable();
   }
   public void editTable(){
       int fInd;
@@ -121,4 +138,5 @@ public class App {
     } while (validatedInd >= validInd);
     return validatedInd;
   }
+
 }
