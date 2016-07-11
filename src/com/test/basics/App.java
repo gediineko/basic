@@ -22,10 +22,16 @@ public class App {
 
   }
   public void menu(){
-    boolean cont = true;
+    boolean cont;
     do {
-      System.out.println("MENU: [1 Search] [2 Edit] [3 Print] [4 Reset] [5 Exit]");
-      int opt = scanner.nextInt();
+      int opt = 0;
+      cont = true;
+      try {
+        System.out.println("MENU: [1 Search] [2 Edit] [3 Print] [4 Reset] [5 Exit]");
+        opt = scanner.nextInt();
+      } catch (InputMismatchException ex){
+        cont = true;
+      }
       scanner.nextLine();
       switch (opt) {
         case 1:
@@ -44,36 +50,41 @@ public class App {
           cont = false;
           break;
         default:
-          System.out.println("Invalid option!");
+          System.out.println("[Invalid option]");
           break;
       }
     } while (cont);
   }
   public void searchTable(){
+    String keyword;
     System.out.println("[Enter keyword]");
-    String keyword = scanner.nextLine();
-    List<Integer[]> indeces = new ArrayList<>();
-    boolean found = false;
-    for (int x = 0; x < table.length; x++){
-    	for (int y = 0; y < table[x].length; y++){
-        	if (table[x][y].contains(keyword)){
-      			Integer[] index = new Integer[2];
-      			index[0] = x;
-      			index[1] = y;
-      			found = true;
-      			indeces.add(index);
-        }
-    	}
-    }
-    if (found){
-      System.out.println("Number of occurences: " + indeces.size());
-      System.out.print("Indeces: ");
-      for (Integer[] index : indeces){
-        System.out.print("[" + index[0] + "," + index[1] + "]\t");
-      }
-      System.out.println("");
-    } else {
+    keyword = scanner.nextLine();
+    if (keyword.equals("")){
       System.out.println("No data found.");
+    } else {
+      List<Integer[]> indeces = new ArrayList<>();
+      boolean found = false;
+      for (int x = 0; x < table.length; x++){
+      	for (int y = 0; y < table[x].length; y++){
+          	if (table[x][y].contains(keyword)){
+        			Integer[] index = new Integer[2];
+        			index[0] = x;
+        			index[1] = y;
+        			found = true;
+        			indeces.add(index);
+          }
+      	}
+      }
+      if (found){
+        System.out.println("Number of occurences: " + indeces.size());
+        System.out.print("Indeces: ");
+        for (Integer[] index : indeces){
+          System.out.print("[" + index[0] + "," + index[1] + "]\t");
+        }
+        System.out.println("");
+      } else {
+        System.out.println("No data found.");
+      }
     }
   }
   public void printTable(){
