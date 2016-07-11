@@ -1,5 +1,7 @@
 package com.test.basic.util;
-
+public class ValidateUtil{
+  
+}
 /*
 
 int validate(int valid) {

@@ -3,9 +3,12 @@ import com.test.basics.util.RandomUtil;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 public class App {
   private Scanner scanner;
   private String[][] table;
+  private int xDim;
+  private int yDim;
   public App (){
     scanner = new Scanner(System.in);
   }
@@ -21,7 +24,7 @@ public class App {
   public void menu(){
     boolean cont = true;
     do {
-      System.out.println("MENU: 1) Search 2) Edit 3) Print 4) Reset 5) Exit");
+      System.out.println("MENU: [1 Search] [2 Edit] [3 Print] [4 Reset] [5 Exit]");
       int opt = scanner.nextInt();
       scanner.nextLine();
       switch (opt) {
@@ -47,7 +50,7 @@ public class App {
     } while (cont);
   }
   public void searchTable(){
-    System.out.println("Enter keyword: ");
+    System.out.println("[Enter keyword]");
     String keyword = scanner.nextLine();
     List<Integer[]> indeces = new ArrayList<>();
     boolean found = false;
@@ -55,8 +58,8 @@ public class App {
     	for (int y = 0; y < table[x].length; y++){
         	if (table[x][y].contains(keyword)){
       			Integer[] index = new Integer[2];
-      			index[0] = y;
-      			index[1] = x;
+      			index[0] = x;
+      			index[1] = y;
       			found = true;
       			indeces.add(index);
         }
@@ -89,54 +92,82 @@ public class App {
     }
   }
   public void setTable(){
-    int xDim = 0;
-    int yDim = 0;
     boolean validRow;
     boolean validColumn;
-    System.out.println("Specify table dimension.");
+    System.out.println("[Specify table dimension]");
     do {
-      validRow = true;
-      System.out.println("Row: ");
-      xDim = scanner.nextInt();
-      if (xDim < 1){
+      try {
+        validRow = true;
+        System.out.println("Row: ");
+        xDim = scanner.nextInt();
+        if (xDim < 1){
+          validRow = false;
+          System.out.println("[Row value should be atleast 1]");
+        }
+      } catch (InputMismatchException ex){
+        System.out.println("[Invalid row value]");
         validRow = false;
-        System.out.println("Row value should be atleast 1!");
+        scanner.nextLine();
       }
     } while (!validRow);
     do {
-      validColumn = true;
-      System.out.println("Column: ");
-      yDim = scanner.nextInt();
-      if (yDim < 1){
+      try {
+        validColumn = true;
+        System.out.println("Column: ");
+        yDim = scanner.nextInt();
+        if (yDim < 1){
+          validColumn = false;
+          System.out.println("[Column value should be atleast 1]");
+        }
+      } catch (InputMismatchException ex){
+        System.out.println("[Invalid column value]");
         validColumn = false;
-        System.out.println("Column value should be atleast 1!");
+        scanner.nextLine();
       }
     } while (!validColumn);
     table = new String[xDim][yDim];
     initTable();
   }
   public void editTable(){
-      int fInd;
-      int sInd;
-      System.out.println("First index: ");
-      fInd = getValidInd(table.length);
-      scanner.nextLine();
-      System.out.println("Second index: ");
-      sInd = getValidInd(table[fInd].length);
-      scanner.nextLine();
-      System.out.println("Current value: " + table[fInd][sInd]);
+      int row = 0;
+      int column = 0;
+      boolean validRow;
+      boolean validColumn;
+      System.out.println("[Specify the index you want to Edit]");
+      do {
+        try {
+          validRow = true;
+          System.out.println("Row: ");
+          row = scanner.nextInt();
+          scanner.nextLine();
+          if (row >= table.length){
+            validRow = false;
+            System.out.println("[Invalid index]");
+          }
+        } catch (InputMismatchException ex){
+          validRow = false;
+          System.out.println("[Invalid index]");
+          scanner.nextLine();
+        }
+      } while (!validRow);
+      do {
+        try {
+          validColumn = true;
+          System.out.println("Column: ");
+          column = scanner.nextInt();
+          scanner.nextLine();
+          if (column >= table[xDim-1].length){
+            validColumn = false;
+            System.out.println("[Invalid index]");
+          }
+        } catch (InputMismatchException ex){
+          validColumn = false;
+          System.out.println("[Invalid index]");
+          scanner.nextLine();
+        }
+      } while (!validColumn);
+      System.out.println("Current value: " + table[row][column]);
       System.out.println("Enter new value: ");
-      table[fInd][sInd] = scanner.nextLine();
+      table[row][column] = scanner.nextLine();
   }
-  public int getValidInd(int validInd){
-    int validatedInd;
-    do {
-      validatedInd = scanner.nextInt();
-      if (validatedInd >= validInd){
-        System.out.println("Invalid index!");
-      }
-    } while (validatedInd >= validInd);
-    return validatedInd;
-  }
-
 }
